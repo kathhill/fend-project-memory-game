@@ -64,10 +64,28 @@ getCards.forEach (function(card) {
         card.classList.add('open', 'show');        
     }
     function listOpenCards() {
-        activeCards.push(card);
-        return activeCards;
-        // make sure no more than two cards are open 
-        
+        activeCards.push(card);        
+        console.log(activeCards.length);
+        // flip only two cards at a time
+        if (activeCards.length == 2) {
+            // check to see if their icons match
+            console.log(activeCards[0].dataset.icon);
+            console.log(activeCards[1].dataset.icon);
+
+            if (activeCards[0].dataset.icon == activeCards[1].dataset.icon) {
+                console.log("Match!");
+                activeCards[0].classList.add("match");
+                activeCards[0].classList.remove("open", "show");
+                activeCards[1].classList.add("match");
+                activeCards[1].classList.remove("open", "show");
+            } else {
+                // hide the cards and empty the array
+                activeCards[0].classList.remove("open", "show"); 
+                activeCards[1].classList.remove("open", "show");
+                activeCards = [];               
+            }         
+
+        }         
     }
 });
 
